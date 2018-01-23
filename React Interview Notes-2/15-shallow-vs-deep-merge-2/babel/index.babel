@@ -1,0 +1,75 @@
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+class Parent extends React.Component {
+  initialState = {}
+    
+  state = {
+       someProperty: {
+          someOtherProperty: {
+              anotherProperty: {
+                 flag: false
+              }
+
+          }
+
+       }
+
+    }
+
+componentDidMount() {
+  this.initialState = Object.assign({}, this.state);
+}
+
+ handleMerge = () => { 
+   /*
+   works
+   this.setState({
+  someProperty: {
+    ...this.state.someProperty,
+    anotherProperty: {
+      ...this.state.someProperty.anotherProperty,
+      flag: true
+    }    
+  }
+})
+   */
+    this.setState({
+   someProperty: Object.assign(this.state.someProperty, {flag: false})
+    });
+  }
+ 
+ //this.setState((prevState) => ({someProperty : {}} //not working
+ handleReset = () =>{  
+    var i = this.initialState ;
+   // console.log(JSON.stringify(i))
+    this.setState(JSON.parse(JSON.stringify(i))) ;  
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleMerge}>
+           Merge
+        </button>
+        <button onClick={this.handleReset}>
+           Reset
+        </button>
+        <p style ={{backgroundColor : 'gold' , width: 500 ,height :200,marginTop:5}}>{JSON.stringify(this.state , null, '\t')} </p>
+      </div>
+    );
+    }
+}
+
+
+const App = () => (
+  <div>
+    <Parent/>    
+  </div>
+);
+
+
+ReactDOM.render(<App /> , document.getElementById('root'));
+
+
+
+

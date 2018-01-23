@@ -1,0 +1,83 @@
+
+//https://stackoverflow.com/questions/42731453/deep-and-shallow-merge-in-javascript
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+//https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge/28248548
+
+//https://stackoverflow.com/questions/18933985/this-setstate-isnt-merging-states-as-i-would-expect
+//https://stackoverflow.com/questions/43040721/how-to-set-a-nested-state-in-react?noredirect=1&lq=1
+
+//When you call setState, whether you call it with an object or in the functional form, the result is that
+// it will shallow merge the properties in your object with the curren state. 
+
+//this.setState({ selected: { ...this.state.selected, name: 'barfoo' } })
+//which gets translated to this.setState({ selected: _extends({}, this.state.selected, { name: 'barfoo' }) }); 
+
+
+
+
+class CountingParent extends React.Component {
+  state = {
+    actionCount: 0
+  }
+
+ handleReset = (e) => {
+    e.persist()
+   //without event persist , nativeEvent is set to null
+   //The SyntheticEvent object is pooled for performance. 
+   // Instead of creating a new one for every event, React replaces thecontents of the one single instance
+    console.log('Child says', e);
+  // actionCount is incremented, and
+  // the new count replaces the existing one
+    this.setState({
+      actionCount: 0
+    });
+  }
+ 
+  handleAction = (e) => {
+    console.log('Child says', e.target.value);
+  // actionCount is incremented, and
+  // the new count replaces the existing one
+    this.setState({
+      actionCount: this.state.actionCount + 1
+    });
+  }
+  render() {
+    return (
+      <div>
+        <Child onAction={this.handleAction}/>
+        <button onClick={this.handleReset}>
+           Reset
+        </button>
+        <p style ={{backgroundColor : 'blue' , width: 300 ,marginTop:5}}>Clicked {this.state.actionCount} times</p>
+      </div>
+    );
+    }
+}
+
+function Child({ onAction }) {
+  return (
+    <button onClick={onAction}>
+       Click Me!
+    </button>
+  );
+}
+
+const Page = () => (
+  <div>
+    <CountingParent/>
+    <CountingParent/>
+    <CountingParent/>
+  </div>
+);
+
+
+ReactDOM.render(<Page /> , document.getElementById('root'));
+
+
+//Note that every instance of a component has its own state. If you have two CountingParent components
+//on the page, they’ll each have counters that will start at 0 and //increment independently
+
+
+
+

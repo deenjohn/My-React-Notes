@@ -1,0 +1,92 @@
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+class Parent extends React.Component {
+  initialState = {}
+    
+  state = {
+       someProperty: {
+          someOtherProperty: {
+              anotherProperty: {
+                 flag: false
+              }
+
+          }
+
+       }
+
+    }
+
+componentDidMount() {
+  this.initialState = Object.assign({}, this.state);
+}
+
+ handleMerge = () => { 
+   /*
+   not working
+   this.setState({
+  someProperty: {
+    ...this.state.someProperty,
+    anotherProperty: {
+      ...this.state.someProperty.anotherProperty,
+      flag: true
+    }    
+  }
+})
+   */
+   
+    // working
+    // var clone = JSON.parse(JSON.stringify(this.state));
+    //  clone.someProperty.someOtherProperty.anotherProperty.flag = true ;
+    // this.setState(clone);
+   
+   //working
+   this.setState(prevState => ({
+    ...prevState,
+    someProperty: {
+        ...prevState.someProperty,
+        someOtherProperty: {
+            ...prevState.someProperty.someOtherProperty, 
+            anotherProperty: {
+               ...prevState.someProperty.someOtherProperty.anotherProperty,
+               flag: true
+            }
+        }
+    }
+}))
+  }
+ 
+ //this.setState((prevState) => ({someProperty : {}} //not working
+ handleReset = () =>{  
+   var clone = JSON.parse(JSON.stringify(this.initialState));
+    this.setState(clone) ;  
+  }
+  render() {
+    console.log(this.state)
+    return (
+      <div>
+        <button onClick={this.handleMerge}>
+           Merge
+        </button>
+        <button onClick={this.handleReset}>
+           Reset
+        </button>
+        <p style ={{backgroundColor : 'gold' , width: 500 ,height :200,marginTop:5}}>{JSON.stringify(this.state , null, '\t')} </p>
+      </div>
+    );
+    }
+}
+
+
+const App = () => (
+  <div>
+    <Parent/>    
+  </div>
+);
+
+
+ReactDOM.render(<App /> , document.getElementById('root'));
+
+
+
+

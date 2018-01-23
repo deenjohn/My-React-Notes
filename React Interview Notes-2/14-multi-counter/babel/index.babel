@@ -1,0 +1,60 @@
+
+
+class CountingParent extends React.Component {
+  state = {
+    actionCount: 0
+  }
+
+ handleReset = (e) => {
+   // e.persist()
+    console.log('Child says', e);
+  // actionCount is incremented, and
+  // the new count replaces the existing one
+    this.setState({
+      actionCount: 0
+    });
+  }
+ 
+  handleAction = (e) => {
+    console.log('Child says', e.target.value);
+  // actionCount is incremented, and
+  // the new count replaces the existing one
+    this.setState({
+      actionCount: this.state.actionCount + 1
+    });
+  }
+  render() {
+    return (
+      <div>
+        <Child onAction={this.handleAction}/>
+        <button onClick={this.handleReset}>
+           Reset
+        </button>
+        <p style ={{backgroundColor : 'blue' , width: 300 ,marginTop:5}}>Clicked {this.state.actionCount} times</p>
+      </div>
+    );
+    }
+}
+
+function Child({ onAction }) {
+  return (
+    <button onClick={onAction}>
+       Click Me!
+    </button>
+  );
+}
+
+const Page = () => (
+  <div>
+    <CountingParent/>
+    <CountingParent/>
+    <CountingParent/>
+  </div>
+);
+
+
+ReactDOM.render(<Page /> , document.getElementById('root'));
+
+//Note that every instance of a component has its own state. If you have two CountingParent components
+//on the page, they’ll each have counters that will start at 0 and //increment independently
+
