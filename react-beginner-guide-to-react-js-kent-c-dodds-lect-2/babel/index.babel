@@ -1,0 +1,20 @@
+
+// const element = React.createElement('div',{children : 'Hello World' ,className : 'container'})
+//console.log(element)
+
+// {} can put any javascript expression code inside curly braces 
+const content = 'Hello World'
+const element = <div className='container'>{content}</div>
+ReactDOM.render(
+         element
+    //<div className='container'> Hello world</div>
+         ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

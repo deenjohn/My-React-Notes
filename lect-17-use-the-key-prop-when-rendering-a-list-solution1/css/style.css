@@ -1,0 +1,16 @@
+body{
+  background-color :gold
+}
+
+button{
+  padding : 5px ;
+  margin : 10px
+}
+
+.item{
+  width : 60%
+}
+
+input{
+  margin-left : 20px
+}

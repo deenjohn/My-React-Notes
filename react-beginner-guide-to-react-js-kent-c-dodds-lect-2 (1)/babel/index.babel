@@ -1,0 +1,23 @@
+
+const rootElement = document.getElementById(
+  'root',
+)
+
+const element = React.createElement('div', {
+  className: 'container',
+  children: 'Hello World',
+})
+
+console.log(element)
+ReactDOM.render(element, rootElement)
+
+//.......................................
+
+const rootElement2 = document.getElementById(
+  'root2',
+)
+
+const element2 = document.createElement('div')
+element2.textContent = 'Hello World2'
+element2.className = 'container'
+rootElement2.appendChild(element2)

@@ -1,0 +1,35 @@
+
+const Button = props =><button type ="button" {...props} /> 
+
+const DangerButton = props =><Button className ="btn btn-danger" {...props} /> 
+
+const PrimaryButton = props =><Button className ="btn btn-primary"  {...props} /> 
+
+
+
+class App extends React.Component {
+  
+  render (){
+    const children = this.props.children ;
+    return (
+    <div> 
+        <PrimaryButton> Touch this</PrimaryButton>
+        <DangerButton> Don't touch this</DangerButton>
+        <Button className ="btn btn-info"> Touch this !!Maybe </Button>
+    </div>
+    )
+  }
+}
+
+ReactDOM.render(
+           <App />
+         ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

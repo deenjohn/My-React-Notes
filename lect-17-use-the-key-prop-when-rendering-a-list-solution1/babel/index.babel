@@ -1,0 +1,75 @@
+
+const allItems = [
+    {id : 'a', value: 'apple', },
+    {id : 'o', value: 'orange', },
+   {id : 'p', value: 'peach', },
+    {id : 'g', value: 'guava', },
+   {id : 'b', value: 'banana', }
+  ]
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state ={items : []}
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+  }
+  
+  addItem(){
+    this.setState(function({items}) {
+      return {
+        items: [...items , allItems.find(i => !items.includes(i)) ]
+      };
+    });
+  }
+  
+  removeItem(item){
+    this.setState(function({items}) {
+      return {
+        items: items.filter(i => i !== item)
+      };
+    });
+  }
+  
+  
+  render() {
+    const {items} = this.state ;
+    return (
+      <div>
+        <button
+         disabled ={items.length >= allItems.length} 
+          onClick ={this.addItem}
+          className ="add"
+         > 
+          + 
+        </button>
+          {items.map((i,index) =>(
+             <div className ='item' key={index}> 
+               <button
+                 onClick= {() => this.removeItem(i)}
+                 className ="remove"
+                 >
+                 -
+               </button>
+                 {i.value} 
+               <input /> 
+            </div>
+          ))}
+       
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+         <App /> 
+    ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  
