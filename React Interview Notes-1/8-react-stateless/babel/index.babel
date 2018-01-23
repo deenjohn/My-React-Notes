@@ -1,0 +1,12 @@
+
+
+//https://www.reactenlightenment.com/react-state/8.4.html
+
+var MyComponent = function(props){
+	return <div>Hello {props.name}</div>;
+};
+
+MyComponent.defaultProps = {name:"John Doe"};
+MyComponent.propTyes = {name: React.PropTypes.string};
+
+ReactDOM.render(<MyComponent />, document.getElementById('root'));

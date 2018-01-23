@@ -1,0 +1,19 @@
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}{props.children}</h1>;
+}
+
+const element1 = <Welcome name="Sara"> "he"</Welcome>;
+console.log(element1)
+
+ReactDOM.render(
+      element1,
+       document.getElementById('root')
+ );
+
+
+
+
+
+  
+  

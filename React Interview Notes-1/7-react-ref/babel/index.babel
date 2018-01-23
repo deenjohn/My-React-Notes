@@ -1,0 +1,51 @@
+
+//https://www.reactenlightenment.com/basic-react-components/6.9.html
+
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.focusTextInput = this.focusTextInput.bind(this);
+  }
+
+  focusTextInput() {
+    // Explicitly focus the text input using the raw DOM API
+    this.textInput.focus();
+  }
+
+  render() {
+    // Use the `ref` callback to store a reference to the text input DOM
+    // element in an instance field (for example, this.textInput).
+    return (
+      <div>
+        <input
+          type="text"
+          ref={(input) => { this.textInput = input; }} />
+        <input
+          type="button"
+          value="Focus the text input"
+          onClick={this.focusTextInput}
+        />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<CustomTextInput className ="testing" ref={function(c2) {console.log(c2)}}  />, document.getElementById('root'));
+ //c2 refer CustomTextInput
+
+// The ref callback function is called immediately after the component is mounted
+
+
+
+
+var Badge = React.createClass({
+	getDefaultProps:function(){
+		console.log(this.props); //note this logs undefined
+		return {name:'John Doe'};
+	},
+	render: function() {
+		return <div>{this.props.name}</div>;
+	}
+});
+
+console.log(<Badge />)

@@ -1,0 +1,21 @@
+
+//https://www.reactenlightenment.com/react-nodes/4.2.html
+
+const element = <div className='container'>'hello'</div>;
+var elementComposition = React.createElement(
+  "div",
+  null,
+  element ,element
+);
+
+ReactDOM.render(
+      elementComposition,
+       document.getElementById('root')
+ );
+
+
+
+
+
+  
+  

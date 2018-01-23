@@ -1,0 +1,33 @@
+
+var c = React.createElement(
+  'div',
+  { value: "Volvo" },
+  "Hello"
+);
+
+/*
+console.log(c) ;
+  $$typeof: Symbol(react.element)
+  key:null
+  props:{value: "Volvo", children: "Hello"}
+  ref:null
+  type:"div"
+  _owner: null
+
+*/
+//console.log(c);
+
+const content = 'Hello World' ;
+const element = <div className='container'>{content}</div> ;
+
+ReactDOM.render(
+      element,
+       document.getElementById('root')
+ );
+
+
+
+
+
+  
+  

@@ -1,0 +1,18 @@
+
+
+function ValidIndicator() {
+  var isValid = true;
+  return (
+    <span>
+      {isValid && 'valid'}
+      {!isValid && 'not valid'}
+    </span>
+  );
+}
+
+//<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/
+// font-awesome/4.7.0/css/font-awesome.min.css">
+// true && 'valid' is 'valid'
+
+
+ReactDOM.render(<ValidIndicator />, document.getElementById('root'));
