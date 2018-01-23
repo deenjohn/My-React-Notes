@@ -1,0 +1,73 @@
+
+class StopWatch extends React.Component {
+   
+  constructor(props) {
+    super(props);
+    this.state = {lapse : 0 , running : false };
+    this.handleRunClick = this.handleRunClick.bind(this);
+    this.handleClearClick = this.handleClearClick.bind(this)
+  }
+  
+    handleRunClick () {
+      
+      // clearInterval and setState
+      // setInterval(setState) and setState
+      
+      this.setState(state =>{
+        
+        if(state.running){
+          clearInterval(this.timer);
+        }else{
+            const startTime = Date.now() - this.state.lapse ;
+            console.log('startTime ',startTime)
+            this.timer = setInterval( () =>{
+            this.setState({lapse : Date.now() - startTime})  
+           })
+        }
+        
+        return {running : !state.running} //setstate
+      })
+               
+   }
+  
+  handleClearClick () { 
+       clearInterval(this.timer)
+       this.setState({lapse : 0 , running : false})
+      
+   }
+   
+   render() {
+     const {lapse , running} = this.state ;
+     console.log('lapse ',lapse)
+    return (
+      <div className = 'container'>
+       <label  
+         style = {{fontSize :'5em' ,display : 'block'}}
+         > 
+         {lapse}ms 
+        </label>
+      <button onClick={this.handleRunClick}>
+        {running ? 'Stop' : 'Start'}
+      </button>
+       <button onClick={this.handleClearClick}>
+        Clear
+      </button>
+        </div>
+    );
+  }
+}
+
+
+
+ReactDOM.render(
+         <StopWatch /> 
+    ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

@@ -1,0 +1,30 @@
+
+const message = (props) => <div> {props.msg}</div> ;
+const Message = (props) => <div> {props.children}</div> ;
+Message.displayName ="Capital-message"
+
+// { <message /> }  // <message data-reactid=".0.0"></message>
+ // should capitalize Message
+
+const element = (
+  <div className ='container'> 
+    { <Message> 
+           outer message 
+          <Message> inner message </Message> 
+      </Message> 
+    } 
+    { message({msg : 'Hello World'}) }
+    { React.createElement(message , {msg : 'GoodBye World'} )}
+  </div>
+) ;
+ReactDOM.render(
+         element,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

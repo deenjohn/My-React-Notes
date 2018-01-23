@@ -1,0 +1,13 @@
+
+.container {
+  width : 50% ;
+  border : 2px groove grey;
+  padding : 10px ;
+  background-color : grey ;
+  text-align : center ;
+}
+button{
+  font-size : 2em;
+  color : grey ;
+  margin : 4px
+}

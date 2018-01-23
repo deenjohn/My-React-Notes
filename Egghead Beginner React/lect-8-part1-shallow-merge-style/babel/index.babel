@@ -1,0 +1,37 @@
+
+// {style ,className ="" ,  ...rest} = props
+
+function Box({style ,className ="" ,  ...rest}){
+  return (
+  <div className = {`box ${className}`}
+    style ={{paddingLeft : 20 , ...style}}
+    {...rest} /> 
+  )
+}
+
+const element = (
+<div> 
+  <Box 
+    className ="box--small"
+    style ={{paddingLeft :10 , backgroundColor :'red'}}> 
+    
+    Small Box 
+    
+  </Box>
+</div>
+) 
+ 
+
+ReactDOM.render(
+   
+         element 
+    ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

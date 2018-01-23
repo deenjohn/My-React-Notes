@@ -1,0 +1,40 @@
+
+//https://github.com/facebook/prop-types
+
+const PropTypes = {
+  
+  string (props , propName , componentName){
+    
+    console.log(componentName)
+    if(typeof props[propName] !=='string'){
+      return new Error(`Hey, you should pass a string for   ${propName} in  ${componentName} but you passed a  ${typeof props[propName] } `
+      );
+    }
+ }
+}
+
+function SayHello(props){
+  return (
+  <div className="container"> 
+    Hello {props.firstName}  {props.lastName}
+  </div> 
+  )
+   
+}
+   
+SayHello.propTypes = {
+  firstName : PropTypes.string ,
+  lastName : PropTypes.string   
+}
+
+ReactDOM.render(
+         <SayHello  firstName ={1} lastName= "John"/> ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

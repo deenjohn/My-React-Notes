@@ -1,0 +1,32 @@
+
+//https://github.com/eggheadio-projects/the-beginner-s-guide-to-reactjs/blob/master/03-create-custom-react-components/index.html
+
+// message is not same as Message
+
+const message = (props) => <div> {props.msg}</div> ;
+const Message = (props) => <div> {props.msg}</div> ;
+
+// { <message /> }  // <message data-reactid=".0.0"></message>
+ // should capitalize Message
+
+// 3 Ways to create a React element
+
+const element = (
+  <div className ='container'> 
+    { <Message msg ="Capital message" /> } 
+    { message({msg : 'Hello World'}) }
+    { React.createElement(message , {msg : 'GoodBye World'} )}
+  </div>
+) ;
+
+ReactDOM.render(
+         element,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

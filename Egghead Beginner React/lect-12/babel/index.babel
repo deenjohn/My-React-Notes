@@ -1,0 +1,41 @@
+
+
+class Counter extends React.Component {
+  
+  constructor(...args){
+    super(...args);
+    this.state = {count : 0} ;
+    this.handleClick = this.handleClick.bind(this) 
+  }
+  
+  handleClick(){
+     this.setState(prevState => ({
+      count: prevState.count +1
+    }));
+  }
+  
+  render(){
+    return(
+      <button
+        onClick ={this.handleClick}
+        > 
+        {this.state.count}
+      </button>
+    )
+    
+  }
+  
+}
+
+ReactDOM.render(
+         <Counter /> 
+    ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

@@ -1,0 +1,35 @@
+
+
+function Box({style ,size  ,  ...rest}){
+  const sizeClassName = size ? `box--${size}` : '' ;
+  return (
+  <div className = {`box ${sizeClassName}`}
+    style ={{paddingLeft : 20 , ...style}}
+    {...rest} /> 
+  )
+}
+
+const element = (
+<div> 
+  <Box 
+    size ="small"
+    style ={{paddingLeft :10 , backgroundColor :'red'}}> 
+    Small Box 
+  </Box>
+</div>
+) 
+ 
+
+ReactDOM.render(
+   
+         element 
+    ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

@@ -1,0 +1,28 @@
+
+const rootElement = document.getElementById('root');
+
+function tick() {
+  const time = new Date().toLocaleTimeString()
+  const element = (
+    <div>    
+      <input value={time} />      
+    </div>
+  )
+  ReactDOM.render(element, rootElement)
+}
+
+tick()
+
+//vanillajs
+
+let element2 = document.getElementById("root2");
+
+function tick2(){
+  const time2 = new Date().toLocaleTimeString();
+  element2.value  = time2;
+  setInterval(tick2, 1000)
+}
+
+setInterval(tick, 1000)
+
+setInterval(tick2, 1000)

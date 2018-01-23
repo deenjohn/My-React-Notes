@@ -1,0 +1,25 @@
+
+button{
+  font-size : 1em;
+  margin : 4px ;
+}
+
+.disabled{
+  padding : 5px ;
+  background-color: red;
+  cursor : not-allowed
+}
+
+.enabled{
+  padding : 5px ;
+  color: #fff;
+  background-color: green;
+  
+}
+
+label{
+  font-size : 1.5em;
+  margin : 4px ;
+  color : grey 
+  
+}

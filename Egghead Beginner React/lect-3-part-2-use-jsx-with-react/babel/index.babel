@@ -1,0 +1,26 @@
+
+// override props
+
+const props ={
+  children : 'Hello World',
+  className : 'container' 
+}
+
+const element = (
+      // <div {...props} className='my-class' children ='new Hello World '/>
+     //<div {...props} className='my-class' > New World</div>
+     <div className='my-class' {...props}> New World</div>
+   
+) ;
+
+ReactDOM.render(
+         element,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  

@@ -1,0 +1,125 @@
+
+const availableOptions = [
+    'apple',
+    'peach',
+    'banana',
+    'orange' ,
+    'guava'
+  ]
+
+class MyFancyForm extends React.Component {
+  
+  constructor(...args){
+    super(...args);
+    this.state = { 
+      multiline : '' ,commaSeperated : '' ,multiSelect :[]
+    } ;
+    this.handleSubmit = this.handleSubmit.bind(this) 
+    this.handleCommaSeperatedChange = this.handleCommaSeperatedChange.bind(this);
+    this.handleMultiLineChange = this.handleMultiLineChange.bind(this);
+    this.handleMultiSelectChange = this.handleMultiSelectChange.bind(this);
+  }
+  
+  handleCommaSeperatedChange(e){
+    const {value}   = e.target ;
+    const allVals  = value.split(',').map(v => v.trim()).filter(Boolean) ;
+    this.setState({commaSeperated : value , 
+                  multiline :allVals.join('\n'),
+                  multiSelect : allVals.filter(v =>availableOptions.includes(v))
+                   })
+   
+  } 
+  
+   handleMultiLineChange(e){
+     const {value}   = e.target ;
+    const allVals  = value.split(',').map(v => v.trim()).filter(Boolean) ;
+    this.setState({multiline :value ,
+                  commaSeperated : allVals.join(',') , 
+                   multiSelect : allVals.filter(v =>availableOptions.includes(v))})
+   
+  }
+  
+  handleMultiSelectChange(e){
+    console.log({target : e.target})
+   const allVals = Array.from(e.target.selectedOptions).map(o => o.value) ;
+    this.setState({multiline :allVals.join('\n') ,
+                  commaSeperated : allVals.join(',') , 
+                   multiSelect : allVals})
+   
+  }
+  
+ 
+  handleSubmit(e){
+     e.preventDefault();
+    const error = this.state.error ;
+     
+  }
+   
+  render(){
+   const {multiline ,commaSeperated ,multiSelect} = this.state ;
+    
+    return( 
+      <form className="form">
+        <div>
+        <label htmlFor="comma">Comma Seperated values : </label><br />
+        <input type="text" value={commaSeperated} onChange={this.handleCommaSeperatedChange} 
+                />
+        <br />
+          
+         <label htmlFor="multiLine">MultiLine values :</label><br />
+        <textarea 
+          value={multiline} 
+          rows ={availableOptions.length} 
+          onChange={this.handleMultiLineChange}
+          >
+             
+           </textarea>
+        <br />
+         <label htmlFor="multiSelect">MultiSelect values :</label><br />
+        <select 
+          multiple value={multiSelect} 
+          size ={availableOptions.length} 
+          onChange={this.handleMultiSelectChange}
+          >
+             { availableOptions.map(function (optionValue) {               
+                return <option key ={optionValue} value={optionValue} >
+                       {optionValue}
+               </option> 
+              })}
+           </select>
+        </div>
+      </form>
+    )
+    
+  }
+  
+}
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleErrorMessage = this.handleErrorMessage.bind(this);
+  }
+  
+  handleErrorMessage(value ,name ){
+    
+  }
+  
+  render() {
+    return (
+      <MyFancyForm  getErrorMessage ={this.handleErrorMessage}/>
+    );
+  }
+}
+
+ReactDOM.render(
+         <App /> 
+    ,
+    document.getElementById('root')
+);
+
+
+
+
+
+  
+  
